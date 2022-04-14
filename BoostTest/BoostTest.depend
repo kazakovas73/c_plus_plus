@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1649791758 source:/home/alexander/proga/c++/my_projects/BoostTest/main.cpp
+	<iostream>
+	"Client.h"
+
+1649792012 /home/alexander/proga/c++/my_projects/BoostTest/Client.h
+	<boost/beast.hpp>
+	<boost/asio/connect.hpp>
+	<boost/asio/ip/tcp.hpp>
+	<string>
+
