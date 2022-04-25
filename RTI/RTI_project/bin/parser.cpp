@@ -19,8 +19,6 @@ Parser::Parser(std::string filename)
 
 void Parser::parse()
 {
-    //std::cout << std::filesystem::current_path().generic_string();
-    //std::cout << std::filesystem::current_path().parent_path();
     ptree pt;
     read_xml(this->filename, pt);
     BOOST_FOREACH(ptree::value_type &child, pt.get_child("Table"))
@@ -86,4 +84,9 @@ void Parser::copy_data_to_deleted(std::string last_filename)
     }
     in.close();
     to_delete_file.close();
+}
+
+void Parser::delete_test()
+{
+    std::remove("input_data/test.xml");
 }

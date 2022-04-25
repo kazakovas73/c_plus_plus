@@ -3,6 +3,7 @@
 #ifndef PERSON_H
 #define PERSON_H
 
+//класс для данных человека
 class Person
 {
 private:
