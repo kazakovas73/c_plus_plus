@@ -1,0 +1,11 @@
+[Unit]
+Description=Project for RTI internship
+After=syslog.target network.target
+
+[Service]
+Type=simple
+
+ExecStart=/home/alexander/proga/c++/qt/RTI_project/RTI_project
+
+[Install]
+WantedBy=multi-user.target

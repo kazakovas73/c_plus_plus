@@ -1,0 +1,51 @@
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+#include <boost/foreach.hpp>
+#include <string>
+#include <vector>
+#include <fstream>
+#include "parser.h"
+
+using boost::property_tree::ptree;
+
+
+Parser::Parser(std::string filename)
+{
+    this->filename = filename;
+}
+
+void Parser::parse()
+{
+    ptree pt;
+    read_xml("test.xml", pt);
+    BOOST_FOREACH(ptree::value_type &child, pt.get_child("Table"))
+    {
+        if (child.first == "<xmlattr>")
+        {
+            continue;
+        }
+
+        Person tmp(child.second.get<std::string>("name"),
+                       child.second.get<std::string>("date"),
+                       child.second.get<std::string>("hours-worked"),
+                       child.second.get<std::string>("car-true"));
+
+        this->persons_parsed_data.push_back(tmp);
+    }
+}
+
+void Parser::write_parsed(std::vector<Person> person_to_write)
+{
+    std::ofstream myfile;
+    myfile.open("output_data/out.txt", std::ios::out);
+
+    for (auto person: person_to_write)
+    {
+        myfile << person.get_fio() << std::endl;
+        myfile << person.get_date() << std::endl;
+        myfile << person.get_hours_worked() << std::endl;
+        myfile << person.get_car_true() << std::endl;
+    }
+
+    myfile.close();
+}

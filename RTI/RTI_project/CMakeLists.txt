@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.5)
+
+project(RTI LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_BUILD_TYPE Debug)
+
+set(HEADERS include/)
+set(SOURCES bin/)
+
+add_executable(RTI_project bin/main.cpp)
+
+
+set_target_properties(RTI_project PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_include_directories(RTI_project
+    PRIVATE
+    input_data/
+    output_data/
+    to_delete/
+    boost/
+    bin/
+    include/)
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/input_data DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/bin DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/boost DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/to_delete DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/output_data DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/src DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/src")
+
+#set_source_files_properties(RTI_project PROPERTIES SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/input)
